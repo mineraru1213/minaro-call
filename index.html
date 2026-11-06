@@ -1,181 +1,172 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minaro Call</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minaro Call</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, "Noto Sans JP", sans-serif;
-      background: #f3f8fc;
-      color: #263746;
-    }
+body {
+  margin: 0;
+  font-family: Arial, "Noto Sans JP", sans-serif;
+  background: #f3f8fc;
+  color: #263746;
+}
 
-    header {
-      padding: 20px;
-      text-align: center;
-      background: white;
-      border-bottom: 1px solid #dce9f2;
-    }
+header {
+  padding: 22px;
+  text-align: center;
+  background: white;
+  border-bottom: 1px solid #dce9f2;
+}
 
-    header h1 {
-      margin: 0;
-      color: #5c9ecb;
-      font-size: 27px;
-    }
+header h1 {
+  margin: 0;
+  color: #5c9ecb;
+  font-size: 28px;
+}
 
-    header p {
-      margin: 6px 0 0;
-      color: #8296a6;
-      font-size: 13px;
-    }
+header p {
+  color: #8296a6;
+  margin: 6px 0 0;
+  font-size: 13px;
+}
 
-    main {
-      width: min(900px, 94%);
-      margin: 30px auto;
-    }
+main {
+  width: min(900px, 94%);
+  margin: 30px auto;
+}
 
-    .panel {
-      background: white;
-      padding: 22px;
-      border-radius: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 18px #789bb51a;
-    }
+.panel {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px #789bb51a;
+}
 
-    h2 {
-      margin-top: 0;
-      font-size: 19px;
-    }
+h2 {
+  margin-top: 0;
+  font-size: 19px;
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #cfdfeb;
-      border-radius: 10px;
-      font-size: 16px;
-      margin-bottom: 12px;
-    }
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cfdfeb;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
 
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 13px 18px;
-      background: #75b8e6;
-      color: white;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 4px;
-    }
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 18px;
+  background: #75b8e6;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 4px;
+}
 
-    button:hover {
-      opacity: .85;
-    }
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
 
-    button:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
+.secondary {
+  background: #e8f2f9;
+  color: #477b9f;
+}
 
-    .secondary {
-      background: #e8f2f9;
-      color: #477b9f;
-    }
+.danger {
+  background: #e87979;
+}
 
-    .danger {
-      background: #e87979;
-    }
+#status {
+  color: #5b8eae;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 22px;
+}
 
-    #status {
-      color: #5b8eae;
-      font-size: 14px;
-      min-height: 22px;
-      line-height: 1.6;
-    }
+#roomInfo {
+  display: none;
+  background: #edf7ff;
+  text-align: center;
+}
 
-    #roomInfo {
-      display: none;
-      background: #edf7ff;
-      padding: 15px;
-      border-radius: 12px;
-      margin-top: 15px;
-      text-align: center;
-    }
+#roomCode {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  color: #438dbd;
+  margin: 12px;
+}
 
-    #roomCode {
-      font-size: 27px;
-      font-weight: bold;
-      letter-spacing: 4px;
-      color: #438dbd;
-      margin: 8px;
-    }
+#callArea {
+  display: none;
+}
 
-    #callArea {
-      display: none;
-    }
+.videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
 
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
+.videoBox {
+  background: #182b3a;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  min-height: 180px;
+}
 
-    .videoBox {
-      background: #182b3a;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      min-height: 180px;
-    }
+video {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  object-fit: cover;
+  display: block;
+}
 
-    video {
-      width: 100%;
-      height: 100%;
-      min-height: 180px;
-      object-fit: cover;
-      display: block;
-    }
+.videoLabel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  background: #0008;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 12px;
+}
 
-    .videoLabel {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      color: white;
-      background: #0008;
-      padding: 5px 9px;
-      border-radius: 7px;
-      font-size: 12px;
-    }
+.controls {
+  text-align: center;
+  margin-top: 18px;
+}
 
-    .controls {
-      text-align: center;
-      margin-top: 18px;
-    }
+footer {
+  text-align: center;
+  color: #9aabb8;
+  padding: 25px;
+  font-size: 12px;
+}
 
-    footer {
-      text-align: center;
-      color: #9aabb8;
-      padding: 25px;
-      font-size: 12px;
-    }
+@media (max-width: 600px) {
+  .videos {
+    grid-template-columns: 1fr;
+  }
 
-    @media (max-width: 600px) {
-      .videos {
-        grid-template-columns: 1fr;
-      }
-
-      .videoBox {
-        min-height: 210px;
-      }
-    }
-  </style>
+  .videoBox {
+    min-height: 210px;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -191,12 +182,14 @@
     <h2>ルームを作成</h2>
     <p>新しい通話ルームを作成します。</p>
     <button id="createButton">ルームを作成する</button>
+  </section>
 
-    <div id="roomInfo">
-      <p>相手にこのルームIDを伝えてください。</p>
-      <div id="roomCode"></div>
-      <button class="secondary" id="copyButton">IDをコピー</button>
-    </div>
+  <!-- ID表示をメニューの外に配置 -->
+  <section class="panel" id="roomInfo">
+    <h2>あなたのルームID</h2>
+    <p>このIDを通話相手に伝えてください。</p>
+    <div id="roomCode"></div>
+    <button class="secondary" id="copyButton">IDをコピー</button>
   </section>
 
   <section class="panel" id="joinArea">
@@ -234,521 +227,530 @@
 
 </main>
 
-<footer>
-  Minaro Call
-</footer>
+<footer>Minaro Call</footer>
 
-<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 <script>
-  // Firebase設定
-  const firebaseConfig = {
-    apiKey: "AIzaSyA401EfOfPuflfXhHG96epkEmQvybD9Y5Y",
-    authDomain: "minaro-call.firebaseapp.com",
-    projectId: "minaro-call",
-    storageBucket: "minaro-call.firebasestorage.app",
-    messagingSenderId: "983008603694",
-    appId: "1:983008603694:web:e1223c82a94c3f06c479bf"
+// Firebase設定
+const firebaseConfig = {
+  apiKey: "AIzaSyA401EfOfPuflfXhHG96epkEmQvybD9Y5Y",
+  authDomain: "minaro-call.firebaseapp.com",
+  projectId: "minaro-call",
+  storageBucket: "minaro-call.firebasestorage.app",
+  messagingSenderId: "983008603694",
+  appId: "1:983008603694:web:e1223c82a94c3f06c479bf"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// 画面要素
+const $ = id => document.getElementById(id);
+
+const statusText = $("status");
+const createButton = $("createButton");
+const joinButton = $("joinButton");
+const roomInput = $("roomInput");
+const roomInfo = $("roomInfo");
+const roomCode = $("roomCode");
+const callArea = $("callArea");
+const localVideo = $("localVideo");
+const remoteVideo = $("remoteVideo");
+const micButton = $("micButton");
+const cameraButton = $("cameraButton");
+
+// 通話状態
+let myUid = null;
+let roomId = null;
+let roomRef = null;
+let peer = null;
+let localStream = null;
+let remoteStream = null;
+let isHost = false;
+let micEnabled = true;
+let cameraEnabled = true;
+let roomListener = null;
+let candidateListener = null;
+let pendingCandidates = [];
+
+const rtcConfig = {
+  iceServers: [
+    { urls: "stun:stun.l.google.com:19302" }
+  ]
+};
+
+function setStatus(message) {
+  statusText.textContent = message;
+}
+
+function showError(error) {
+  console.error(error);
+
+  const messages = {
+    "auth/unauthorized-domain":
+      "Firebaseでこのサイトのドメインが許可されていません。",
+    "auth/operation-not-allowed":
+      "Firebaseの匿名認証を有効にしてください。",
+    "permission-denied":
+      "Firestoreのアクセスが拒否されました。ルールを確認してください。"
   };
 
-  firebase.initializeApp(firebaseConfig);
+  setStatus(
+    messages[error.code] ||
+    "エラー: " + (error.message || error)
+  );
+}
 
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+// Firebase匿名認証
+auth.signInAnonymously()
+  .then(result => {
+    myUid = result.user.uid;
+    setStatus("接続準備完了！ルームを作成または参加できます。");
+  })
+  .catch(showError);
 
-  // 画面要素
-  const statusText = document.getElementById("status");
-  const createButton = document.getElementById("createButton");
-  const joinButton = document.getElementById("joinButton");
-  const roomInput = document.getElementById("roomInput");
-  const roomInfo = document.getElementById("roomInfo");
-  const roomCode = document.getElementById("roomCode");
-  const callArea = document.getElementById("callArea");
-  const localVideo = document.getElementById("localVideo");
-  const remoteVideo = document.getElementById("remoteVideo");
-  const micButton = document.getElementById("micButton");
-  const cameraButton = document.getElementById("cameraButton");
+// カメラ・マイク
+async function getMedia() {
+  if (!navigator.mediaDevices ||
+      !navigator.mediaDevices.getUserMedia) {
+    throw new Error("HTTPSのサイトで開いてください。");
+  }
 
-  // 通話の状態
-  let myUid = null;
-  let roomId = null;
-  let roomRef = null;
-  let peer = null;
-  let localStream = null;
-  let remoteStream = null;
-  let isHost = false;
-  let micEnabled = true;
-  let cameraEnabled = true;
-  let roomListener = null;
-  let candidateListener = null;
-  let pendingCandidates = [];
+  localStream = await navigator.mediaDevices.getUserMedia({
+    audio: true,
+    video: true
+  });
 
-  const rtcConfig = {
-    iceServers: [
-      {
-        urls: "stun:stun.l.google.com:19302"
+  localVideo.srcObject = localStream;
+}
+
+// WebRTC接続を作成
+function createPeer() {
+  peer = new RTCPeerConnection(rtcConfig);
+
+  remoteStream = new MediaStream();
+  remoteVideo.srcObject = remoteStream;
+
+  localStream.getTracks().forEach(track => {
+    peer.addTrack(track, localStream);
+  });
+
+  peer.ontrack = event => {
+    event.streams[0].getTracks().forEach(track => {
+      if (!remoteStream.getTracks().some(
+        existing => existing.id === track.id
+      )) {
+        remoteStream.addTrack(track);
       }
-    ]
+    });
   };
 
-  function setStatus(message) {
-    statusText.textContent = message;
-  }
+  peer.onconnectionstatechange = () => {
+    if (!peer) return;
 
-  function showError(error) {
-    console.error(error);
+    const state = peer.connectionState;
 
-    const messages = {
-      "auth/unauthorized-domain":
-        "このサイトのドメインがFirebaseで許可されていません。Firebaseの承認済みドメイン設定を確認してください。",
-      "auth/operation-not-allowed":
-        "Firebaseの匿名認証が有効になっていません。",
-      "permission-denied":
-        "Firestoreのアクセスが拒否されました。セキュリティルールを確認してください。"
-    };
-
-    setStatus(
-      messages[error.code] ||
-      "エラーが発生しました: " + (error.message || error)
-    );
-  }
-
-  // 匿名認証
-  auth.signInAnonymously()
-    .then(async (result) => {
-      myUid = result.user.uid;
-      setStatus("接続準備完了！ルームを作成または参加できます。");
-    })
-    .catch(showError);
-
-  // カメラ・マイク取得
-  async function getMedia() {
-    if (!navigator.mediaDevices ||
-        !navigator.mediaDevices.getUserMedia) {
-      throw new Error(
-        "カメラ・マイクを利用できません。HTTPSのサイトで開いてください。"
-      );
+    if (state === "connected") {
+      setStatus("通話が接続されました！");
+    } else if (state === "connecting") {
+      setStatus("相手と接続しています...");
+    } else if (state === "disconnected") {
+      setStatus("接続が一時的に切れました。");
+    } else if (state === "failed") {
+      setStatus("接続に失敗しました。通信環境を確認してください。");
     }
+  };
+}
 
-    localStream = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: true
-    });
+// 自分のICE候補をFirestoreに保存
+function sendCandidates(collectionName) {
+  peer.onicecandidate = async event => {
+    if (!event.candidate || !roomRef) return;
 
-    localVideo.srcObject = localStream;
-  }
-
-  // PeerConnection作成
-  function createPeer() {
-    peer = new RTCPeerConnection(rtcConfig);
-
-    remoteStream = new MediaStream();
-    remoteVideo.srcObject = remoteStream;
-
-    localStream.getTracks().forEach(track => {
-      peer.addTrack(track, localStream);
-    });
-
-    peer.ontrack = (event) => {
-      event.streams[0].getTracks().forEach(track => {
-        if (!remoteStream.getTracks().some(
-          existing => existing.id === track.id
-        )) {
-          remoteStream.addTrack(track);
-        }
-      });
-    };
-
-    peer.onconnectionstatechange = () => {
-      const state = peer.connectionState;
-
-      if (state === "connected") {
-        setStatus("通話が接続されました！");
-      } else if (state === "connecting") {
-        setStatus("相手と接続しています...");
-      } else if (state === "disconnected") {
-        setStatus("接続が一時的に切れました。");
-      } else if (state === "failed") {
-        setStatus("接続に失敗しました。通信環境を確認してください。");
-      }
-    };
-
-    return peer;
-  }
-
-  // ICE候補をFirestoreへ保存
-  function sendCandidates(collectionName) {
-    peer.onicecandidate = async (event) => {
-      if (!event.candidate || !roomRef) return;
-
-      try {
-        await roomRef.collection(collectionName).add({
-          uid: myUid,
-          candidate: event.candidate.toJSON(),
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-      } catch (error) {
-        showError(error);
-      }
-    };
-  }
-
-  // 相手のICE候補を受け取る
-  function receiveCandidates(collectionName) {
-    candidateListener = roomRef.collection(collectionName)
-      .onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
-          if (change.type !== "added") return;
-
-          const data = change.doc.data();
-
-          if (data.uid === myUid) return;
-
-          const candidate =
-            new RTCIceCandidate(data.candidate);
-
-          if (peer && peer.remoteDescription) {
-            peer.addIceCandidate(candidate).catch(console.error);
-          } else {
-            pendingCandidates.push(candidate);
-          }
-        });
-      }, showError);
-  }
-
-  // 保留中のICE候補を追加
-  async function flushCandidates() {
-    if (!peer || !peer.remoteDescription) return;
-
-    const candidates = [...pendingCandidates];
-    pendingCandidates = [];
-
-    for (const candidate of candidates) {
-      try {
-        await peer.addIceCandidate(candidate);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
-
-  // 通話画面を表示
-  function showCallArea() {
-    callArea.style.display = "block";
-    document.getElementById("menuArea").style.display = "none";
-    document.getElementById("joinArea").style.display = "none";
-  }
-
-  // ルームID生成
-  function generateRoomId() {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    const values = new Uint32Array(8);
-    crypto.getRandomValues(values);
-
-    return Array.from(values)
-      .map(value => chars[value % chars.length])
-      .join("");
-  }
-
-  // ルーム作成
-  async function createRoom() {
     try {
-      if (!myUid) throw new Error("認証の準備ができていません。");
-
-      createButton.disabled = true;
-      setStatus("カメラとマイクを準備しています...");
-
-      await getMedia();
-
-      roomId = generateRoomId();
-      roomRef = db.collection("rooms").doc(roomId);
-      isHost = true;
-
-      await roomRef.set({
-        hostUid: myUid,
-        guestUid: null,
-        offer: null,
-        answer: null,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      await roomRef.collection(collectionName).add({
+        uid: myUid,
+        candidate: event.candidate.toJSON(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
-
-      createPeer();
-      sendCandidates("hostCandidates");
-
-      const offer = await peer.createOffer();
-      await peer.setLocalDescription(offer);
-
-      await roomRef.update({
-        offer: peer.localDescription.toJSON(),
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-
-      // 相手の回答を待つ
-      roomListener = roomRef.onSnapshot(async snapshot => {
-        if (!snapshot.exists) return;
-
-        const data = snapshot.data();
-
-        if (data.answer && !peer.remoteDescription) {
-          try {
-            await peer.setRemoteDescription(
-              new RTCSessionDescription(data.answer)
-            );
-
-            await flushCandidates();
-            setStatus("相手の回答を受信しました。接続中...");
-          } catch (error) {
-            showError(error);
-          }
-        }
-      }, showError);
-
-      receiveCandidates("guestCandidates");
-
-      roomCode.textContent = roomId;
-      roomInfo.style.display = "block";
-      showCallArea();
-
-      setStatus("ルームを作成しました。相手の参加を待っています。");
-
     } catch (error) {
       showError(error);
-      await cleanup(false);
-    } finally {
-      createButton.disabled = false;
+    }
+  };
+}
+
+// 相手のICE候補を受信
+function receiveCandidates(collectionName) {
+  candidateListener = roomRef.collection(collectionName)
+    .onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        if (change.type !== "added") return;
+
+        const data = change.doc.data();
+        if (data.uid === myUid) return;
+
+        const candidate = new RTCIceCandidate(data.candidate);
+
+        if (peer && peer.remoteDescription) {
+          peer.addIceCandidate(candidate).catch(console.error);
+        } else {
+          pendingCandidates.push(candidate);
+        }
+      });
+    }, showError);
+}
+
+// 保留中の候補を追加
+async function flushCandidates() {
+  if (!peer || !peer.remoteDescription) return;
+
+  const candidates = [...pendingCandidates];
+  pendingCandidates = [];
+
+  for (const candidate of candidates) {
+    try {
+      await peer.addIceCandidate(candidate);
+    } catch (error) {
+      console.error(error);
     }
   }
+}
 
-  // ルーム参加
-  async function joinRoom() {
-    try {
-      if (!myUid) throw new Error("認証の準備ができていません。");
+// 画面切り替え
+function showCallArea() {
+  callArea.style.display = "block";
+  $("menuArea").style.display = "none";
+  $("joinArea").style.display = "none";
 
-      const code = roomInput.value.trim().toUpperCase();
+  // ホストのルームIDは別パネルなので表示されたまま
+  if (isHost) {
+    roomInfo.style.display = "block";
+  } else {
+    roomInfo.style.display = "none";
+  }
+}
 
-      if (!/^[A-HJ-NP-Z2-9]{8}$/.test(code)) {
-        throw new Error("8文字のルームIDを入力してください。");
+// ルームID生成
+function generateRoomId() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const values = new Uint32Array(8);
+  crypto.getRandomValues(values);
+
+  return Array.from(values)
+    .map(value => chars[value % chars.length])
+    .join("");
+}
+
+// ルーム作成
+async function createRoom() {
+  try {
+    if (!myUid) {
+      throw new Error("認証の準備がまだできていません。");
+    }
+
+    createButton.disabled = true;
+    setStatus("カメラとマイクを準備しています...");
+
+    await getMedia();
+
+    roomId = generateRoomId();
+    roomRef = db.collection("rooms").doc(roomId);
+    isHost = true;
+
+    await roomRef.set({
+      hostUid: myUid,
+      guestUid: null,
+      offer: null,
+      answer: null,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    createPeer();
+    sendCandidates("hostCandidates");
+
+    const offer = await peer.createOffer();
+    await peer.setLocalDescription(offer);
+
+    await roomRef.update({
+      offer: peer.localDescription.toJSON(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    // 相手の回答を待つ
+    roomListener = roomRef.onSnapshot(async snapshot => {
+      if (!snapshot.exists || !peer) return;
+
+      const data = snapshot.data();
+
+      if (data.answer && !peer.remoteDescription) {
+        try {
+          await peer.setRemoteDescription(
+            new RTCSessionDescription(data.answer)
+          );
+
+          await flushCandidates();
+          setStatus("相手の回答を受信しました。接続中...");
+        } catch (error) {
+          showError(error);
+        }
       }
+    }, showError);
 
-      joinButton.disabled = true;
-      setStatus("ルームを確認しています...");
+    receiveCandidates("guestCandidates");
 
-      roomId = code;
-      roomRef = db.collection("rooms").doc(roomId);
+    // IDを表示
+    roomCode.textContent = roomId;
+    roomInfo.style.display = "block";
 
-      const roomSnapshot = await roomRef.get();
+    showCallArea();
+    setStatus("ルームを作成しました。相手の参加を待っています。");
 
-      if (!roomSnapshot.exists) {
+  } catch (error) {
+    await cleanup(true, false);
+    showError(error);
+  } finally {
+    createButton.disabled = false;
+  }
+}
+
+// ルーム参加
+async function joinRoom() {
+  try {
+    if (!myUid) {
+      throw new Error("認証の準備がまだできていません。");
+    }
+
+    const code = roomInput.value.trim().toUpperCase();
+
+    if (!/^[A-HJ-NP-Z2-9]{8}$/.test(code)) {
+      throw new Error("8文字のルームIDを入力してください。");
+    }
+
+    joinButton.disabled = true;
+    setStatus("ルームを確認しています...");
+
+    roomId = code;
+    roomRef = db.collection("rooms").doc(roomId);
+
+    const roomSnapshot = await roomRef.get();
+
+    if (!roomSnapshot.exists) {
+      throw new Error("ルームが見つかりません。");
+    }
+
+    const roomData = roomSnapshot.data();
+
+    if (roomData.guestUid !== null) {
+      throw new Error("このルームはすでに満員です。");
+    }
+
+    if (!roomData.offer) {
+      throw new Error("ルームの準備がまだ完了していません。");
+    }
+
+    if (roomData.hostUid === myUid) {
+      throw new Error("自分のルームには参加できません。");
+    }
+
+    setStatus("カメラとマイクを準備しています...");
+    await getMedia();
+
+    // 参加権を確保
+    await db.runTransaction(async transaction => {
+      const snapshot = await transaction.get(roomRef);
+
+      if (!snapshot.exists) {
         throw new Error("ルームが見つかりません。");
       }
 
-      const roomData = roomSnapshot.data();
+      const current = snapshot.data();
 
-      if (roomData.guestUid !== null) {
+      if (current.guestUid !== null) {
         throw new Error("このルームはすでに満員です。");
       }
 
-      if (!roomData.offer) {
-        throw new Error("ルームの準備がまだ完了していません。");
-      }
-
-      if (roomData.hostUid === myUid) {
-        throw new Error("自分が作成したルームには参加できません。");
-      }
-
-      setStatus("カメラとマイクを準備しています...");
-      await getMedia();
-
-      // 参加権を確保
-      await db.runTransaction(async transaction => {
-        const snapshot = await transaction.get(roomRef);
-
-        if (!snapshot.exists) {
-          throw new Error("ルームが見つかりません。");
-        }
-
-        const current = snapshot.data();
-
-        if (current.guestUid !== null) {
-          throw new Error("このルームはすでに満員です。");
-        }
-
-        transaction.update(roomRef, {
-          guestUid: myUid,
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-      });
-
-      isHost = false;
-      createPeer();
-      sendCandidates("guestCandidates");
-
-      await peer.setRemoteDescription(
-        new RTCSessionDescription(roomData.offer)
-      );
-
-      receiveCandidates("hostCandidates");
-      await flushCandidates();
-
-      const answer = await peer.createAnswer();
-      await peer.setLocalDescription(answer);
-
-      await roomRef.update({
-        answer: peer.localDescription.toJSON(),
+      transaction.update(roomRef, {
+        guestUid: myUid,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
+    });
 
-      showCallArea();
-      setStatus("参加しました。相手と接続しています...");
-
-    } catch (error) {
-      showError(error);
-      await cleanup(false);
-    } finally {
-      joinButton.disabled = false;
-    }
-  }
-
-  // 自分の候補データを削除
-  async function deleteMyCandidates() {
-    if (!roomRef || !myUid) return;
-
-    const collectionName = isHost
-      ? "hostCandidates"
-      : "guestCandidates";
-
-    try {
-      const snapshot = await roomRef.collection(collectionName)
-        .where("uid", "==", myUid)
-        .get();
-
-      const batch = db.batch();
-
-      snapshot.docs.forEach(doc => batch.delete(doc.ref));
-
-      if (!snapshot.empty) {
-        await batch.commit();
-      }
-    } catch (error) {
-      console.warn("候補データの削除に失敗:", error);
-    }
-  }
-
-  // 通話終了・後片付け
-  async function cleanup(deleteRoom = true) {
-    if (roomListener) {
-      roomListener();
-      roomListener = null;
-    }
-
-    if (candidateListener) {
-      candidateListener();
-      candidateListener = null;
-    }
-
-    if (peer) {
-      peer.onicecandidate = null;
-      peer.close();
-      peer = null;
-    }
-
-    if (localStream) {
-      localStream.getTracks().forEach(track => track.stop());
-      localStream = null;
-    }
-
-    localVideo.srcObject = null;
-    remoteVideo.srcObject = null;
-    remoteStream = null;
-    pendingCandidates = [];
-
-    if (roomRef) {
-      await deleteMyCandidates();
-
-      if (deleteRoom && isHost) {
-        try {
-          await roomRef.delete();
-        } catch (error) {
-          console.warn("ルーム削除に失敗:", error);
-        }
-      }
-    }
-
-    roomId = null;
-    roomRef = null;
     isHost = false;
-    micEnabled = true;
-    cameraEnabled = true;
+    createPeer();
+    sendCandidates("guestCandidates");
 
-    micButton.textContent = "マイク OFF";
-    cameraButton.textContent = "カメラ OFF";
+    await peer.setRemoteDescription(
+      new RTCSessionDescription(roomData.offer)
+    );
 
-    callArea.style.display = "none";
-    document.getElementById("menuArea").style.display = "block";
-    document.getElementById("joinArea").style.display = "block";
-    roomInfo.style.display = "none";
+    receiveCandidates("hostCandidates");
+    await flushCandidates();
 
+    const answer = await peer.createAnswer();
+    await peer.setLocalDescription(answer);
+
+    await roomRef.update({
+      answer: peer.localDescription.toJSON(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    showCallArea();
+    setStatus("参加しました。相手と接続しています...");
+
+  } catch (error) {
+    await cleanup(false, false);
+    showError(error);
+  } finally {
+    joinButton.disabled = false;
+  }
+}
+
+// 自分のICE候補を削除
+async function deleteMyCandidates() {
+  if (!roomRef || !myUid) return;
+
+  const collectionName = isHost
+    ? "hostCandidates"
+    : "guestCandidates";
+
+  try {
+    const snapshot = await roomRef.collection(collectionName)
+      .where("uid", "==", myUid)
+      .get();
+
+    const batch = db.batch();
+
+    snapshot.docs.forEach(doc => batch.delete(doc.ref));
+
+    if (!snapshot.empty) {
+      await batch.commit();
+    }
+  } catch (error) {
+    console.warn("候補データ削除エラー:", error);
+  }
+}
+
+// 通話終了
+async function cleanup(deleteRoom = true, updateStatus = true) {
+  if (roomListener) {
+    roomListener();
+    roomListener = null;
+  }
+
+  if (candidateListener) {
+    candidateListener();
+    candidateListener = null;
+  }
+
+  if (peer) {
+    peer.onicecandidate = null;
+    peer.close();
+    peer = null;
+  }
+
+  if (localStream) {
+    localStream.getTracks().forEach(track => track.stop());
+    localStream = null;
+  }
+
+  localVideo.srcObject = null;
+  remoteVideo.srcObject = null;
+  remoteStream = null;
+  pendingCandidates = [];
+
+  if (roomRef) {
+    await deleteMyCandidates();
+
+    if (deleteRoom && isHost) {
+      try {
+        await roomRef.delete();
+      } catch (error) {
+        console.warn("ルーム削除エラー:", error);
+      }
+    }
+  }
+
+  roomId = null;
+  roomRef = null;
+  isHost = false;
+  micEnabled = true;
+  cameraEnabled = true;
+
+  micButton.textContent = "マイク OFF";
+  cameraButton.textContent = "カメラ OFF";
+
+  callArea.style.display = "none";
+  roomInfo.style.display = "none";
+  $("menuArea").style.display = "block";
+  $("joinArea").style.display = "block";
+
+  if (updateStatus) {
     setStatus("通話を終了しました。");
   }
+}
 
-  // マイク切り替え
-  micButton.addEventListener("click", () => {
-    if (!localStream) return;
+// マイク切り替え
+micButton.addEventListener("click", () => {
+  if (!localStream) return;
 
-    micEnabled = !micEnabled;
+  micEnabled = !micEnabled;
 
-    localStream.getAudioTracks().forEach(track => {
-      track.enabled = micEnabled;
-    });
-
-    micButton.textContent =
-      micEnabled ? "マイク OFF" : "マイク ON";
+  localStream.getAudioTracks().forEach(track => {
+    track.enabled = micEnabled;
   });
 
-  // カメラ切り替え
-  cameraButton.addEventListener("click", () => {
-    if (!localStream) return;
+  micButton.textContent =
+    micEnabled ? "マイク OFF" : "マイク ON";
+});
 
-    cameraEnabled = !cameraEnabled;
+// カメラ切り替え
+cameraButton.addEventListener("click", () => {
+  if (!localStream) return;
 
-    localStream.getVideoTracks().forEach(track => {
-      track.enabled = cameraEnabled;
-    });
+  cameraEnabled = !cameraEnabled;
 
-    cameraButton.textContent =
-      cameraEnabled ? "カメラ OFF" : "カメラ ON";
+  localStream.getVideoTracks().forEach(track => {
+    track.enabled = cameraEnabled;
   });
 
-  // ボタン操作
-  createButton.addEventListener("click", createRoom);
-  joinButton.addEventListener("click", joinRoom);
+  cameraButton.textContent =
+    cameraEnabled ? "カメラ OFF" : "カメラ ON";
+});
 
-  document.getElementById("leaveButton")
-    .addEventListener("click", () => cleanup(true));
+// ボタン操作
+createButton.addEventListener("click", createRoom);
+joinButton.addEventListener("click", joinRoom);
 
-  document.getElementById("copyButton")
-    .addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(roomId);
-        setStatus("ルームIDをコピーしました！");
-      } catch (error) {
-        setStatus("コピーできませんでした。IDを手動でコピーしてください。");
-      }
-    });
+$("leaveButton").addEventListener("click", () => {
+  cleanup(true);
+});
 
-  // ページを閉じたときは通信を停止
-  window.addEventListener("beforeunload", () => {
-    if (peer) peer.close();
+// IDコピー
+$("copyButton").addEventListener("click", async () => {
+  if (!roomId) return;
 
-    if (localStream) {
-      localStream.getTracks().forEach(track => track.stop());
-    }
-  });
+  try {
+    await navigator.clipboard.writeText(roomId);
+    setStatus("ルームIDをコピーしました！");
+  } catch (error) {
+    setStatus("コピーできませんでした。IDを手動でコピーしてください。");
+  }
+});
 
+// ページを閉じたとき
+window.addEventListener("beforeunload", () => {
+  if (peer) peer.close();
+
+  if (localStream) {
+    localStream.getTracks().forEach(track => track.stop());
+  }
+});
 </script>
 
 </body>
