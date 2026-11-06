@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minaro Call</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #263746;
+      background: linear-gradient(135deg, #f7fbff, #e8f5ff);
+    }
+
+    header {
+      padding: 22px;
+      background: white;
+      border-bottom: 1px solid #dceaf5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #55aee8;
+      font-size: 23px;
+    }
+
+    header span {
+      color: #8299aa;
+      font-size: 12px;
+    }
+
+    main {
+      width: min(600px, 92%);
+      margin: 55px auto;
+    }
+
+    .panel {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px #b8d8ee44;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .description {
+      text-align: center;
+      color: #8299aa;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #d5e5f1;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .primary {
+      color: white;
+      background: #55aee8;
+    }
+
+    .secondary {
+      color: #398fc8;
+      background: #e8f5ff;
+    }
+
+    button:active {
+      opacity: 0.75;
+    }
+
+    .divider {
+      text-align: center;
+      color: #a0b2c0;
+      margin: 10px 0 20px;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 13px;
+      color: #8299aa;
+      margin-top: 20px;
+    }
+
+    .call-panel {
+      margin-top: 22px;
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .call-panel h3 {
+      margin-top: 0;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .controls button {
+      flex: 1;
+      background: #e8f5ff;
+      color: #398fc8;
+    }
+
+    footer {
+      text-align: center;
+      color: #9aafbf;
+      font-size: 12px;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Minaro Call</h1>
+  <span>ONLINE VOICE & VIDEO</span>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>オンライン通話</h2>
+
+    <p class="description">
+      ルームを作成して、友達と通話しよう。
+    </p>
+
+    <button class="primary" onclick="createRoom()">
+      ＋ ルームを作成
+    </button>
+
+    <div class="divider">または</div>
+
+    <input
+      id="roomId"
+      type="text"
+      placeholder="ルームIDを入力"
+      maxlength="30"
+    >
+
+    <button class="secondary" onclick="joinRoom()">
+      ルームに参加
+    </button>
+
+    <p class="status" id="status">
+      初期化しています...
+    </p>
+  </section>
+
+  <section class="call-panel">
+    <h3>通話コントロール</h3>
+    <p class="description">
+      通話機能は次のアップデートで実装予定です。
+    </p>
+
+    <div class="controls">
+      <button disabled>🎤 マイク</button>
+      <button disabled>📷 カメラ</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Minaro Call © 2026
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA401EfOfPuflfXhHG96epkEmQvybD9Y5Y",
+    authDomain: "minaro-call.firebaseapp.com",
+    projectId: "minaro-call",
+    storageBucket: "minaro-call.firebasestorage.app",
+    messagingSenderId: "983008603694",
+    appId: "1:983008603694:web:e1223c82a94c3f06c479bf"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+
+  document.getElementById("status").textContent =
+    "Firebase SDKの初期化が完了しました";
+
+  function createRoom() {
+    document.getElementById("status").textContent =
+      "ルーム作成機能は次の段階で実装します。";
+  }
+
+  function joinRoom() {
+    const id = document.getElementById("roomId").value.trim();
+
+    if (!id) {
+      alert("ルームIDを入力してください。");
+      return;
+    }
+
+    document.getElementById("status").textContent =
+      "参加機能は次の段階で実装します。";
+  }
+</script>
+
+</body>
+</html>
