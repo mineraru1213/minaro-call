@@ -5,62 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Minaro Call</title>
 <style>
-:root{--bg:#fff;--sky:#e8f4fc;--sky2:#cfe8f7;--line:#bfdff2;--accent:#3a9bd5;--accent-d:#2680b8;--text:#1f3a4d;--sub:#6a8799;--danger:#e0585b;--ok:#2fa772}
+:root{--bg:#313338;--bg2:#2b2d31;--bg3:#1e1f22;--text:#f2f3f5;--sub:#b5bac1;--blurple:#5865f2;--blurple-d:#4752c4;--green:#23a559;--red:#da373c}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",system-ui,sans-serif;color:var(--text);background:var(--bg);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+body{font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",system-ui,sans-serif;color:var(--text);background:var(--bg3);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 .app{min-height:100%;display:flex;flex-direction:column}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--sky);border-bottom:1px solid var(--line)}
-header h1{font-size:18px;margin:0;letter-spacing:.02em}
-.badge{font-size:13px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--sub);white-space:nowrap}
-.badge.ok{color:var(--ok);border-color:var(--ok)}.badge.err{color:var(--danger);border-color:var(--danger)}.badge.busy{color:var(--accent-d);border-color:var(--accent)}
-button{font:inherit;cursor:pointer;border:0;border-radius:14px;min-height:52px;padding:0 22px;font-weight:600;background:var(--accent);color:#fff;touch-action:manipulation}
-button:hover{background:var(--accent-d)}button:disabled{opacity:.5;cursor:default}
-button.sec{background:var(--sky);color:var(--accent-d);border:1px solid var(--line)}button.sec:hover{background:var(--sky2)}
-button.off{background:#fff;color:var(--danger);border:2px solid var(--danger)}
-button.end{background:var(--danger)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;background:var(--bg2);border-bottom:1px solid #000}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:32px;height:32px;border-radius:50%;background:var(--blurple);display:grid;place-items:center;font-weight:700}
+header h1{font-size:16px;margin:0;font-weight:700}
+.badge{font-size:13px;padding:5px 12px;border-radius:999px;background:var(--bg3);color:var(--sub);white-space:nowrap}
+.badge.ok{color:var(--green)}.badge.err{color:#ff7a7d}.badge.busy{color:#f0b232}
+button{font:inherit;cursor:pointer;border:0;border-radius:6px;min-height:48px;padding:0 20px;font-weight:600;background:var(--blurple);color:#fff;touch-action:manipulation;transition:background .15s}
+button:hover{background:var(--blurple-d)}button:disabled{opacity:.5;cursor:default}
+button.sec{background:#4e5058;color:var(--text)}button.sec:hover{background:#6d6f78}
+button.off{background:var(--red)}button.off:hover{background:#a12828}
+button.end{background:var(--red)}button.end:hover{background:#a12828}
+:focus-visible{outline:3px solid #00a8fc;outline-offset:2px}
 .hidden{display:none!important}
-#lobby{flex:1;display:grid;place-content:center;gap:20px;padding:24px;max-width:460px;width:100%;margin:0 auto}
-#lobby h2{margin:0;font-size:24px}#lobby p{margin:0;color:var(--sub)}
-.panel{background:var(--sky);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:12px}
-input{font:inherit;font-size:22px;letter-spacing:.2em;text-transform:uppercase;text-align:center;min-height:52px;border:1px solid var(--line);border-radius:14px;padding:0 12px;width:100%;color:var(--text)}
-#msg{min-height:1.4em;color:var(--danger);font-size:14px}
-#call{flex:1;display:flex;flex-direction:column;min-height:0}
-.roombar{display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.roombar small{color:var(--sub)}
-#roomId{font-size:clamp(28px,8vw,44px);font-weight:700;letter-spacing:.18em;font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--accent-d)}
-.roombar button{min-height:44px}
-.videos{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;min-height:0}
-.tile{position:relative;background:var(--sky);border:1px solid var(--line);border-radius:18px;overflow:hidden;min-height:200px}
-.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--sky)}
+#lobby{flex:1;display:grid;place-items:center;padding:20px;background:var(--blurple)}
+.card{width:100%;max-width:440px;background:var(--bg);border-radius:8px;padding:28px;display:grid;gap:18px;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+.card h2{margin:0;text-align:center;font-size:24px}
+.card p.lead{margin:6px 0 0;text-align:center;color:var(--sub);font-size:15px}
+.field{display:grid;gap:8px}
+.field label{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.04em}
+.or{display:flex;align-items:center;gap:12px;color:var(--sub);font-size:13px}
+.or::before,.or::after{content:"";flex:1;height:1px;background:#4e5058}
+input{font:inherit;font-size:22px;letter-spacing:.2em;text-transform:uppercase;text-align:center;min-height:48px;border:0;border-radius:4px;padding:0 12px;width:100%;color:var(--text);background:var(--bg3)}
+input::placeholder{color:#80848e;letter-spacing:.05em}
+#msg{min-height:1.4em;color:#ff7a7d;font-size:14px;text-align:center}
+#call{flex:1;display:flex;flex-direction:column;min-height:0;background:var(--bg3)}
+.roombar{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:var(--bg);border-bottom:1px solid #000;flex-wrap:wrap}
+.roombar small{color:var(--sub);font-weight:700}
+#roomId{font-size:clamp(26px,7vw,40px);font-weight:700;letter-spacing:.18em;font-family:ui-monospace,Menlo,Consolas,monospace;color:#c9cdfb}
+.roombar button{min-height:40px}
+.videos{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;min-height:0}
+.tile{position:relative;background:#111214;border-radius:8px;overflow:hidden;min-height:200px}
+.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#111214}
 #localV{transform:scaleX(-1)}
-.tag{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.9);border-radius:999px;padding:4px 12px;font-size:13px}
-.controls{display:flex;justify-content:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);flex-wrap:wrap}
-.controls button{flex:1 1 120px;max-width:200px}
-@media(max-width:700px){.videos{grid-template-columns:1fr;grid-auto-rows:minmax(160px,1fr)}}
+.tag{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.65);border-radius:4px;padding:3px 10px;font-size:13px;font-weight:600}
+.controls{display:flex;justify-content:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--bg2);border-top:1px solid #000;flex-wrap:wrap}
+.controls button{border-radius:999px;min-height:52px;flex:1 1 120px;max-width:190px}
+@media(max-width:700px){.videos{grid-template-columns:1fr;grid-auto-rows:minmax(160px,1fr)}.card{padding:22px}}
 </style>
 </head>
 <body>
 <div class="app">
   <header>
-    <h1>Minaro Call</h1>
+    <div class="brand"><div class="logo">M</div><h1>Minaro Call</h1></div>
     <span id="status" class="badge">準備中</span>
   </header>
 
   <main id="lobby">
-    <div>
-      <h2>顔を見て、すぐ話そう</h2>
-      <p>ルームを作って、IDを相手に伝えるだけ。</p>
-    </div>
-    <div class="panel">
+    <div class="card">
+      <div>
+        <h2>顔を見て、すぐ話そう</h2>
+        <p class="lead">ルームを作って、IDを相手に伝えるだけ。</p>
+      </div>
       <button id="createBtn" disabled>ルームを作成</button>
-    </div>
-    <div class="panel">
-      <input id="joinInput" maxlength="8" placeholder="ルームID" autocomplete="off" autocapitalize="characters" aria-label="ルームID">
+      <div class="or">または</div>
+      <div class="field">
+        <label for="joinInput">ルームID</label>
+        <input id="joinInput" maxlength="8" placeholder="ABCD2345" autocomplete="off" autocapitalize="characters">
+      </div>
       <button id="joinBtn" class="sec" disabled>ルームに参加</button>
+      <div id="msg" role="alert"></div>
     </div>
-    <div id="msg" role="alert"></div>
   </main>
 
   <section id="call" class="hidden">
@@ -116,7 +126,7 @@ signInAnonymously(auth).catch(e => { setStatus("エラー", "err"); showMsg("認
 
 /* ---------- ルームID ---------- */
 function genRoomId() {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // 紛らわしい文字を除外
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   const r = crypto.getRandomValues(new Uint8Array(8));
   return Array.from(r, n => chars[n % chars.length]).join("");
 }
@@ -147,7 +157,7 @@ function showCall() {
   $("micBtn").className = "sec"; $("camBtn").className = "sec";
   $("micBtn").textContent = "マイク ON"; $("camBtn").textContent = "カメラ ON";
 }
-const pending = [];   // remote description 設定前のICE候補
+const pending = [];
 function addRemoteCandidate(c) {
   if (pc.remoteDescription) pc.addIceCandidate(c).catch(() => {}); else pending.push(c);
 }
@@ -197,7 +207,6 @@ $("joinBtn").onclick = async () => {
   try {
     role = "guest"; roomId = id; ended = false;
     setStatus("接続中…", "busy");
-    // 先に参加枠を確保する（満員・存在しない場合はルールにより拒否される）
     try { await updateDoc(doc(db, "rooms", id), { guestUid: uid }); }
     catch (e) { roomId = null; throw Object.assign(new Error("join"), { code: "full" }); }
     await startMedia(); createPC();
@@ -212,7 +221,6 @@ $("joinBtn").onclick = async () => {
     await updateDoc(doc(db, "rooms", id), { answer: { type: answer.type, sdp: answer.sdp } });
     showCall();
     watchCandidates("hostCandidates");
-    // ホストがルームを閉じたら終了
     unsubs.push(onSnapshot(doc(db, "rooms", id), s => { if (!s.exists() && !ended) { hangup(false); setStatus("相手が通話を終了しました", "err"); } }));
   } catch (e) { fail(e); }
 };
